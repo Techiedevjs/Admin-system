@@ -1,0 +1,66 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>HELIX - ADMIN</title>
+</head>
+<body>
+    <div class="glow"></div>
+    <main id="admin" class="hide-element">
+        <svg class="cancelAdmin pointer" onclick="closeAdmin()" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
+            <rect x="50" width="50" height="50" rx="14" transform="rotate(90 50 0)" fill="white" fill-opacity="0.03"/>
+            <rect x="50" width="50" height="50" rx="14" transform="rotate(90 50 0)" fill="url(#paint0_radial_7894_58258)" fill-opacity="0.05"/>
+            <rect x="49.5" y="0.5" width="49" height="49" rx="13.5" transform="rotate(90 49.5 0.5)" stroke="url(#paint1_radial_7894_58258)" stroke-opacity="0.25"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M31.851 19.4512C31.9366 19.3658 32.0044 19.2644 32.0507 19.1528C32.0971 19.0411 32.1209 18.9215 32.121 18.8006C32.1211 18.6797 32.0974 18.56 32.0512 18.4483C32.005 18.3366 31.9373 18.2351 31.8518 18.1496C31.7664 18.0641 31.665 17.9963 31.5534 17.9499C31.4417 17.9036 31.3221 17.8797 31.2012 17.8797C31.0803 17.8796 30.9606 17.9033 30.849 17.9495C30.7373 17.9957 30.6358 18.0634 30.5502 18.1488L24.9998 23.6992L19.451 18.1488C19.2783 17.9761 19.0441 17.8791 18.7998 17.8791C18.5556 17.8791 18.3214 17.9761 18.1486 18.1488C17.9759 18.3215 17.8789 18.5558 17.8789 18.8C17.8789 19.0443 17.9759 19.2785 18.1486 19.4512L23.699 25L18.1486 30.5488C18.0631 30.6343 17.9953 30.7359 17.949 30.8476C17.9027 30.9593 17.8789 31.0791 17.8789 31.2C17.8789 31.321 17.9027 31.4407 17.949 31.5525C17.9953 31.6642 18.0631 31.7657 18.1486 31.8512C18.3214 32.0239 18.5556 32.121 18.7998 32.121C18.9208 32.121 19.0405 32.0971 19.1523 32.0509C19.264 32.0046 19.3655 31.9367 19.451 31.8512L24.9998 26.3008L30.5502 31.8512C30.7229 32.0237 30.9571 32.1205 31.2012 32.1204C31.4453 32.1202 31.6793 32.0231 31.8518 31.8504C32.0243 31.6777 32.1212 31.4436 32.121 31.1995C32.1209 30.9554 32.0237 30.7213 31.851 30.5488L26.3006 25L31.851 19.4512Z" fill="white" fill-opacity="0.45"/>
+            <defs>
+            <radialGradient id="paint0_radial_7894_58258" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(107 15.3846) rotate(180) scale(49.2566 62.4509)">
+            <stop offset="0.0080693" stop-color="white"/>
+            <stop offset="0.540792" stop-color="white" stop-opacity="0.31"/>
+            <stop offset="1" stop-color="white" stop-opacity="0"/>
+            </radialGradient>
+            <radialGradient id="paint1_radial_7894_58258" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(72.4219 14.6875) rotate(85.8243) scale(35.4065 38.2224)">
+            <stop stop-color="white"/>
+            <stop offset="1" stop-color="white" stop-opacity="0"/>
+            </radialGradient>
+            </defs>
+        </svg>
+        <div class="content-container">
+            <aside>
+                <section>
+                    <div class="players-online-container">
+                        <div>
+                            <div class="players-online">
+                                <img src="images/glowonline.png" alt="">
+                                <h3 class="total-players fm">1,682</h3>
+                            </div>
+                            <p>Players online</p>
+                        </div>
+                        <div class="refresh-icon pointer"><img src="images/rotate.png" alt=""></div>
+                    </div>
+                    <label for="player-search">
+                        <div class="player-search">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <path d="M12.9166 11.6666H12.2583L12.025 11.4416C12.5458 10.8366 12.9264 10.124 13.1396 9.35466C13.3528 8.58536 13.3934 7.77844 13.2583 6.99165C12.8666 4.67498 10.9333 2.82498 8.59998 2.54165C7.77966 2.43787 6.94647 2.52312 6.16417 2.79089C5.38186 3.05865 4.67118 3.50183 4.08651 4.08651C3.50183 4.67118 3.05865 5.38186 2.79089 6.16417C2.52312 6.94647 2.43787 7.77966 2.54165 8.59998C2.82498 10.9333 4.67498 12.8666 6.99165 13.2583C7.77844 13.3934 8.58536 13.3528 9.35466 13.1396C10.124 12.9264 10.8366 12.5458 11.4416 12.025L11.6666 12.2583V12.9166L15.2083 16.4583C15.55 16.8 16.1083 16.8 16.45 16.4583C16.7916 16.1166 16.7916 15.5583 16.45 15.2166L12.9166 11.6666ZM7.91665 11.6666C5.84165 11.6666 4.16665 9.99165 4.16665 7.91665C4.16665 5.84165 5.84165 4.16665 7.91665 4.16665C9.99165 4.16665 11.6666 5.84165 11.6666 7.91665C11.6666 9.99165 9.99165 11.6666 7.91665 11.6666Z" fill="white"/>
+                            </svg>
+                            <input type="text" id="player-search" placeholder="Search by name">
+                        </div>
+                    </label>
+                </section>
+                <section class="players">
+                    <div class="player"></div>
+                </section>
+            </aside>
+            <section>
+
+            </section>
+        </div>
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
