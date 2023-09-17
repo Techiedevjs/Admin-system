@@ -1,82 +1,90 @@
-const players = [
+let players = [
     {
         id: "Wrersi45",
         firstname: "john",
         lastname: "oils",
-        DOB: "",
-        lixBalance: "",
+        DOB: "06/07/1989",
+        lixBalance: 340,
         bankBalance: 0,
-        helixName: "",
-        XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        cashBalance: 23450,
+        helixName: "theKillerWhale",
+        XP: 9,
+        rank: 3,
+        job: "taxi job",
+        phoneNumber: "034-456-986",
+        country: "Canada",
     },
     {
         id: "qewrsi25",
         firstname: "sander",
         lastname: "jones",
-        DOB: "",
-        lixBalance: "",
-        bankBalance: 0,
-        helixName: "",
-        XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        DOB: "07/07/1999",
+        lixBalance: 450,
+        bankBalance: 3000,
+        cashBalance: 23450,
+        helixName: "brokeNigga",
+        XP: 32,
+        rank: 12,
+        job: "jagun jagun",
+        phoneNumber: "987-345-123",
+        country: "England",
     },
     {
         id: "rsitey65",
         firstname: "james",
         lastname: "bond",
-        DOB: "",
-        lixBalance: "",
-        bankBalance: 0,
-        helixName: "",
+        DOB: "09/12/2004",
+        lixBalance: 700,
+        bankBalance: 15789,
+        cashBalance: 23450,
+        helixName: "Kindkiller",
         XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        rank: 1,
+        job: "Tracker",
+        phoneNumber: "784-345-234",
+        country: "egypt",
     },
     {
         id: "wer34yus9",
         firstname: "martinez",
         lastname: "cruz",
-        DOB: "",
-        lixBalance: "",
+        DOB: "12/09/1989",
+        lixBalance: 50,
         bankBalance: 0,
-        helixName: "",
-        XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        cashBalance: 23450,
+        helixName: "AbsoluteDanger",
+        XP: 35,
+        rank: 50,
+        job: "police",
+        phoneNumber: "009-876-345",
+        country: "belarus",
     },
     {
         id: "W678iops",
         firstname: "jane",
         lastname: "doe",
-        DOB: "",
+        DOB: "10/08/2023",
         lixBalance: "",
         bankBalance: 0,
-        helixName: "",
-        XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        cashBalance: 23450,
+        helixName: "daggerman",
+        XP: 40,
+        rank: 10,
+        job: "driver",
+        phoneNumber: "345-907-563",
+        country: "nigeria",
     },
 ]
-
+const refreshTotalPlayers = () => {
+    document.querySelector('.total-players').innerHTML = players.length;
+}
 const fetchPlayers = (data) => {
     document.querySelector('.players').innerHTML = ""
+    refreshTotalPlayers()
     data.map((player) => {
         const {firstname, lastname, id} = player
         document.querySelector('.players').innerHTML  += `
-            <div class="player" id="${id}">
+            <div class="player" id="${id}" onclick="playerDetail('${id}')">
             <svg xmlns="http://www.w3.org/2000/svg" class="player-glow" width="18" height="52" viewBox="0 0 18 52" fill="none">
                 <g filter="url(#filter0_d_13919_1220)">
                 <path d="M1 13C3.20914 13 5 14.7909 5 17V35C5 37.2091 3.20914 39 1 39V13Z" fill="#57FFAF" fill-opacity="0.4" shape-rendering="crispEdges"/>
@@ -122,6 +130,23 @@ document.querySelector('#player-search').addEventListener('input', (e) => {
     let data = players.filter((player) => player.firstname.includes(val) || player.lastname.includes(val))
     fetchPlayers(data)
 })
+const playerDetail = (id) => {
+    let play = players.filter((player) => player.id === id);
+    console.log(play[0])
+    const {firstname, lastname, lixBalance, bankBalance, DOB, helixName, job, XP, rank, country, cashBalance, phoneNumber} = play[0]
+    document.querySelector('.firstname').innerHTML = firstname;
+    document.querySelector('.lastname').innerHTML = lastname;
+    document.querySelector('.dob').innerHTML = DOB;
+    document.querySelector('.phonenumber').innerHTML = phoneNumber;
+    document.querySelector('.rank').innerHTML = rank;
+    document.querySelector('.xp').innerHTML = XP;
+    document.querySelector('.country').innerHTML = country;
+    document.querySelector('.job').innerHTML = job
+    document.querySelector('.bankbalance').innerHTML = bankBalance
+    document.querySelector('.cashbalance').innerHTML = cashBalance
+    document.querySelector('.helixname').innerHTML = helixName
+    document.querySelector('.lixbalance').innerHTML = lixBalance
+}
 const closeAdmin = () => {
     document.querySelector('#admin').classList.add('hide-element')
 }
