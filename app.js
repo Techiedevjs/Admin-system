@@ -1,6 +1,6 @@
 let players = [
     {
-        id: "Wrersi45",
+        id: "Wrersi45uirtu456",
         firstname: "john",
         lastname: "oils",
         DOB: "06/07/1989",
@@ -15,7 +15,7 @@ let players = [
         country: "Canada",
     },
     {
-        id: "qewrsi25",
+        id: "qewrsi25805694",
         firstname: "sander",
         lastname: "jones",
         DOB: "07/07/1999",
@@ -30,7 +30,7 @@ let players = [
         country: "England",
     },
     {
-        id: "rsitey65",
+        id: "rsitey65werier45643yu",
         firstname: "james",
         lastname: "bond",
         DOB: "09/12/2004",
@@ -45,7 +45,7 @@ let players = [
         country: "egypt",
     },
     {
-        id: "wer34yus9",
+        id: "wer34yus9eruuer5674s",
         firstname: "martinez",
         lastname: "cruz",
         DOB: "12/09/1989",
@@ -60,7 +60,7 @@ let players = [
         country: "belarus",
     },
     {
-        id: "W678iops",
+        id: "W678iops673jsdkyierss34",
         firstname: "jane",
         lastname: "doe",
         DOB: "10/08/2023",
@@ -73,6 +73,36 @@ let players = [
         job: "driver",
         phoneNumber: "345-907-563",
         country: "nigeria",
+    },
+    {
+        id: "W678iopsfgf43jsdkyierss34",
+        firstname: "jackson",
+        lastname: "dreed",
+        DOB: "10/08/2001",
+        lixBalance: 67,
+        bankBalance: 0,
+        cashBalance: 23450,
+        helixName: "mohbad",
+        XP: 40,
+        rank: 10,
+        job: "taxi job",
+        phoneNumber: "346-997-563",
+        country: "nigeria",
+    },
+    {
+        id: "W678iops673jsdkyieiop34",
+        firstname: "opera",
+        lastname: "winnie",
+        DOB: "10/08/2003",
+        lixBalance: 90,
+        bankBalance: 9070,
+        cashBalance: 23450,
+        helixName: "despicable-me",
+        XP: 40,
+        rank: 10,
+        job: "villian",
+        phoneNumber: "345-987-063",
+        country: "russia",
     },
 ]
 const refreshTotalPlayers = () => {
@@ -125,15 +155,27 @@ const fetchPlayers = (data) => {
     })
 }
 fetchPlayers(players)
+let currentPlayer;
+const playersTab = document.querySelectorAll('.player');
+playersTab.forEach((p) => {
+    p.addEventListener('click', () => {
+        p.classList.add('active')
+        let others = []
+        playersTab.forEach((i) => {
+            i !== p && others.push(i)
+        })
+        others.map((i) => i.classList.remove('active'))
+    })
+})
 document.querySelector('#player-search').addEventListener('input', (e) => {
     let val = e.target.value.toLowerCase()
     let data = players.filter((player) => player.firstname.includes(val) || player.lastname.includes(val))
     fetchPlayers(data)
 })
-const playerDetail = (id) => {
-    let play = players.filter((player) => player.id === id);
+const playerDetail = (pid) => {
+    let play = players.filter((player) => player.id === pid);
     console.log(play[0])
-    const {firstname, lastname, lixBalance, bankBalance, DOB, helixName, job, XP, rank, country, cashBalance, phoneNumber} = play[0]
+    const {firstname, lastname, lixBalance, bankBalance, DOB, helixName, job, XP, rank, country, cashBalance, phoneNumber, id} = play[0]
     document.querySelector('.firstname').innerHTML = firstname;
     document.querySelector('.lastname').innerHTML = lastname;
     document.querySelector('.dob').innerHTML = DOB;
@@ -142,16 +184,28 @@ const playerDetail = (id) => {
     document.querySelector('.xp').innerHTML = XP;
     document.querySelector('.country').innerHTML = country;
     document.querySelector('.job').innerHTML = job
-    document.querySelector('.bankbalance').innerHTML = bankBalance
-    document.querySelector('.cashbalance').innerHTML = cashBalance
+    document.querySelector('.bankbalance').innerHTML = bankBalance + " $"
+    document.querySelector('.cashbalance').innerHTML = cashBalance + " $"
     document.querySelector('.helixname').innerHTML = helixName
     document.querySelector('.lixbalance').innerHTML = lixBalance
+    document.querySelector('.helixid').innerHTML = id
+}
+playerDetail(players[0].id);
+playersTab[0].classList.add('active')
+const banPlayer = () => {
+    document.querySelector('.banpage').classList.remove('hideban');
+}
+const confirmBan = () => {
+    document.querySelector('.banpage').classList.add('hideban');
+}
+const backToProfile = () => {
+    document.querySelector('.banpage').classList.add('hideban');
 }
 const closeAdmin = () => {
-    document.querySelector('#admin').classList.add('hide-element')
+    document.querySelector('#admin').classList.add('hide-element');
 }
 const toggleDisplay = () =>{
-    document.querySelector('#admin').classList.toggle('hide-element')
+    document.querySelector('#admin').classList.toggle('hide-element');
 }
 document.addEventListener('keydown', evt => {
     if (evt.key === 'Home') {
