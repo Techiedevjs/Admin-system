@@ -176,6 +176,9 @@ aside{
     background: rgba(255, 255, 255, 0.1) ;
     box-shadow: 0px 0px 25px 0px rgba(0, 0, 0, 0.15);
 }
+.refresh-icon:hover{
+    background: rgba(255, 255, 255, 0.15);
+}
 .refresh-icon:hover img{
     transform: rotate(180deg);
 }
@@ -271,26 +274,54 @@ aside{
     flex-direction: column;
     gap: var(--gap);
     position: relative;
+    justify-content: flex-end;
+    height: 100%;
+}
+#pages{
+    margin-bottom: 2vw;
+    gap: 0.5vw;
 }
 #pages div{
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.05);
-    background: radial-gradient(113.83% 113.83% at 30.81% 29.07%, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 54.08%, rgba(255, 255, 255, 0.00) 100%), rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.00);
     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
     color: rgba(255, 255, 255, 0.50);
     text-align: center;
     font-size: var(--fontxsmall);
     font-weight: 500;
-    line-height: 100%; /* 16px */
+    line-height: 100%;
     letter-spacing: 0.8px;
     padding: var(--padmedium);
     cursor: pointer;
+}
+.page-active{
+    color: white !important;
+    position: relative;   
+    background: rgba(255,255,255, 0.03) !important;
+}
+.whiteline{
+    display: none;
+}
+.page-active .whiteline{
+    display: block;
+    border-radius: 10px;
+border: 1px solid #FFF;
+background: #FFF;
+box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
+width: 30px;
+height: 1px;
+position: absolute;
+bottom: 0;
+left: 50%;
+transform: translateX(-50%);
 }
 .page-content{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: var(--gaplarge);
+    position: relative;
 }
 .page-header{
     color: rgba(255, 255, 255, 0.65);
@@ -320,7 +351,7 @@ aside{
     grid-template-columns: 1fr 1fr 1fr;
     gap: var(--gap);
 }
-.personal div, .helix-id-name div, .job-rank-xp, .actions{
+.personal div, .helix-id-name div, .job-rank-xp, .actions, .ban-btns .flexsmall{
     padding: var(--padmedium);
     border-radius: calc(0.8 * var(--radius));
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -383,7 +414,7 @@ aside{
     height: 1px;
     background: rgba(255, 255, 255, 0.15);
 }
-.actions{
+.actions, .ban-btns .flexsmall{
     padding: var(--padlittle);
     color: rgba(255, 255, 255, 0.80);
     font-weight: 400;
@@ -397,6 +428,7 @@ aside{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0.5vw;
+    margin-top: 1vw;
 }
 .svgbox, .minisvgbox{
     display: flex;
@@ -407,6 +439,14 @@ aside{
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.6vw;
+    position: relative;
+}
+.bottomglow{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: none;
 }
 .svgbox svg, .svgbox img, .minisvgbox svg, .minisvgbox img{
     width: 50%;
@@ -430,7 +470,8 @@ aside{
     justify-content: center;
     align-items: center;
     z-index: 5;
-    background: black;
+    backdrop-filter: blur(5px);
+    background: url(images/banbackground.svg) 100% no-repeat, rgba(0, 0, 0, 0.55);
 }
 .ban-content{
     display: flex;
@@ -439,18 +480,19 @@ aside{
     flex-direction: column;
     gap: var(--gaplarge);
     text-align: center;
+    /* width: 16.7vw; */
 }
-.ban-content svg{
+/* .ban-content svg{
     width: 2.4vw;
     aspect-ratio: 1/1;
-}
+} */
 .ban-content h5{
     color: #FFF;
     font-size: var(--fontmedium);
     font-weight: 700;
     letter-spacing: 3.36px;
 }
-.ban-content section p{
+.ban-content .headertext{
     color: rgba(255, 255, 255, 0.45);
     font-size: 0.9vw;
 }
@@ -460,11 +502,19 @@ aside{
     background-color: transparent;
     resize: none;
     flex: 1;
-    color: white;
+    color: rgba(255, 255, 255, 0.65);
+    margin-left: 5px;
 }
 .ban-content .flexlittle:has(textarea){
+    position: relative;
     align-items: flex-start;
     margin-bottom: var(--padlittle);
+}
+.ban-content .flexlittle:has(textarea):hover, .ban-content .flexlittle:has(input):hover{
+    background: rgba(255, 255, 255, 0.05);
+}
+.ban-content input{
+    width: 5vw;
 }
 .ban-content .flexlittle{
     border-radius: var(--radius);
@@ -476,8 +526,65 @@ aside{
     display: flex;
     gap: var(--gap);
     margin-top: var(--gaplarge);
+    font-size: var(--fontsmall);
+    font-weight: 400;
+    letter-spacing: 0.8px;
+}
+.backtopageone{
+    color: rgba(255, 255, 255, 0.45) !important;
 }
 .confirmban{
     background: rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.80);
+    flex: 1;
+}
+.confirmban:hover{
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white !important;
+}
+.active-action{
+    background:rgba(0, 217, 178, 0.1);
+    border: 1px solid rgba(0, 217, 178, 0.05);
+}
+.active-action svg path{
+    fill: #00D9B2;
+}
+.active-action:hover{
+    background:rgba(0, 217, 178, 0.15);
+    opacity: 0.25;
+}
+.active-action:has(.bottomglow):hover{
+    opacity: 1;
+}
+.active-action .bottomglow{
+    display: block;
+}
+.hammerban{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: 10;
+}
+.maxlength{
+    font-size: calc(0.9 * var(--fontxsmall));
+    position: absolute;
+    bottom: var(--padmedium);
+    right: var(--padmedium);
+    color: rgba(255, 255, 255, 0.65);
+    letter-spacing: 0.6px;
+}
+.wordcount{
+    color: white;
+}
+.days{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--padlittle);
+    font-size: calc(0.9 * var(--fontxsmall)) !important;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.65);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: var(--padmedium);
 }
