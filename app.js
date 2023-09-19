@@ -105,6 +105,19 @@ let players = [
         country: "russia",
     },
 ]
+let allpages = document.querySelectorAll('#pages div');
+allpages.forEach((page) => {
+    page.addEventListener('click', () => {
+        page.classList.add('page-active');
+        let otherpages = []
+        allpages.forEach((el) => {
+            if(el !== page){
+                el.classList.remove('page-active')
+            }
+        })
+        otherpages.map((i) => i.classList.remove())
+    })
+})
 const refreshTotalPlayers = () => {
     document.querySelector('.total-players').innerHTML = players.length;
 }
@@ -174,7 +187,7 @@ document.querySelector('#player-search').addEventListener('input', (e) => {
 })
 const playerDetail = (pid) => {
     let play = players.filter((player) => player.id === pid);
-    console.log(play[0])
+    document.querySelector('.banpage').classList.add('hideban')
     const {firstname, lastname, lixBalance, bankBalance, DOB, helixName, job, XP, rank, country, cashBalance, phoneNumber, id} = play[0]
     document.querySelector('.firstname').innerHTML = firstname;
     document.querySelector('.lastname').innerHTML = lastname;
@@ -191,16 +204,30 @@ const playerDetail = (pid) => {
     document.querySelector('.helixid').innerHTML = id
 }
 playerDetail(players[0].id);
-playersTab[0].classList.add('active')
+playersTab[0].classList.add('active');
+document.querySelectorAll('.actions').forEach((action) => {
+    action.addEventListener('click', () => {
+        action.classList.toggle('active-action');
+    })
+})
 const banPlayer = () => {
     document.querySelector('.banpage').classList.remove('hideban');
+    document.querySelector('.hammerban').classList.remove('hideban');
 }
 const confirmBan = () => {
     document.querySelector('.banpage').classList.add('hideban');
+    document.querySelector('.hammerban').classList.add('hideban');
+    document.querySelector('.bantab').classList.add('active-action');
 }
 const backToProfile = () => {
     document.querySelector('.banpage').classList.add('hideban');
+    document.querySelector('.hammerban').classList.add('hideban');
+    document.querySelector('.bantab').classList.remove('active-action');
 }
+document.querySelector('#ban-reason').addEventListener('input', (e) => {
+    let reason = e.target.value
+    document.querySelector('.wordcount').innerHTML = reason.length;
+})
 const closeAdmin = () => {
     document.querySelector('#admin').classList.add('hide-element');
 }
