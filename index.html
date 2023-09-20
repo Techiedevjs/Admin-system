@@ -13,7 +13,7 @@
 <body>
     <div class="glow"></div>
     <main id="admin" class="hide-element">
-        <img src="images/hammer.svg" class="hammerban hideban" alt="">
+        <div class="hammerban "></div>
         <svg class="cancelAdmin pointer" onclick="closeAdmin()" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50" fill="none">
             <rect x="50" width="50" height="50" rx="14" transform="rotate(90 50 0)" fill="white" fill-opacity="0.03"/>
             <rect x="50" width="50" height="50" rx="14" transform="rotate(90 50 0)" fill="url(#paint0_radial_7894_58258)" fill-opacity="0.05"/>
@@ -36,9 +36,12 @@
                 <section>
                     <div class="players-online-container">
                         <div>
-                            <div class="players-online">
-                                <img src="images/glowonline.png" alt="">
-                                <h3 class="total-players fm">1,682</h3>
+                            <div class="players-online flexlittle">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
+                                    <rect width="12" height="12" rx="6" fill="#57FFAF" fill-opacity="0.4"/>
+                                    <rect x="3" y="3" width="6" height="6" rx="3" fill="#57FFAF" fill-opacity="0.7"/>
+                                  </svg>
+                                <h3 class="total-players fm"></h3>
                             </div>
                             <p>Players online</p>
                         </div>
@@ -358,10 +361,10 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                     <path d="M18 3V5H2V3H18ZM12 7V9H2V7H12ZM18 7V9H14V7H18ZM8 11V13H2V11H8ZM18 11V13H10V11H18ZM14 15V17H2V15H14Z" fill="white"/>
                                 </svg>
-                                <textarea name="ban-reason fs" id="ban-reason" maxlength="50" rows="5" placeholder="Describe the reason"></textarea>
+                                <textarea name="ban-reason" id="ban-reason" class="fs" maxlength="50" rows="5" placeholder="Describe the reason"></textarea>
                                 <div class="maxlength"><span class="wordcount">0</span>/50</div>
                             </div>
-                            <div class="flexlittle">
+                            <div class="flexlittle duration-cont" >
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                 <g clip-path="url(#clip0_8003_57547)">
                                     <path d="M10.0003 1.66666C14.6028 1.66666 18.3337 5.39749 18.3337 9.99999C18.3337 14.6025 14.6028 18.3333 10.0003 18.3333C5.39783 18.3333 1.66699 14.6025 1.66699 9.99999C1.66699 5.39749 5.39783 1.66666 10.0003 1.66666ZM10.0003 4.99999C9.77931 4.99999 9.56735 5.08779 9.41107 5.24407C9.25479 5.40035 9.16699 5.61231 9.16699 5.83332V9.99999C9.16704 10.221 9.25487 10.4329 9.41116 10.5892L11.9112 13.0892C12.0683 13.241 12.2788 13.3249 12.4973 13.3231C12.7158 13.3212 12.9248 13.2335 13.0793 13.079C13.2338 12.9245 13.3215 12.7155 13.3234 12.497C13.3253 12.2785 13.2413 12.068 13.0895 11.9108L10.8337 9.65499V5.83332C10.8337 5.61231 10.7459 5.40035 10.5896 5.24407C10.4333 5.08779 10.2213 4.99999 10.0003 4.99999Z" fill="white"/>
@@ -373,12 +376,17 @@
                                 </defs>
                                 </svg>
                                 <input type="text" name="time" id="time" class="fs" placeholder="Write the term">
-                                <div class=" pointer days">
+                                <div class="pointer days" onclick="toggleDuration()">
                                     <p>DAYS</p>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="7" viewBox="0 0 12 7" fill="none">
                                         <path d="M5.46967 6.53033C5.76256 6.82322 6.23744 6.82322 6.53033 6.53033L11.3033 1.75736C11.5962 1.46447 11.5962 0.989593 11.3033 0.6967C11.0104 0.403806 10.5355 0.403806 10.2426 0.6967L6 4.93934L1.75736 0.696699C1.46447 0.403805 0.989593 0.403805 0.6967 0.696699C0.403806 0.989592 0.403806 1.46447 0.696699 1.75736L5.46967 6.53033ZM5.25 5L5.25 6L6.75 6L6.75 5L5.25 5Z" fill="white" fill-opacity="0.65"></path>
                                     </svg>
                                 </div>
+                                <section class="duration hideban">
+                                    <div class="hours">HOURS <span></span></div>
+                                    <div class="weeks">WEEKS <span></span></div>
+                                    <div class="months">MONTHS <span></span></div>
+                                </section>
                             </div>
                             <section class="ban-btns">
                                 <div class="flexsmall backtopageone" onclick="backToProfile()">
@@ -404,8 +412,8 @@
                     </article>
                 </section>
                     </section>
-                    <section class="page2-content"></section>
-                    <section class="page3-content"></section>
+                    <section class="page2-content hide-element"></section>
+                    <section class="page3-content hide-element"></section>
                 </div>
             </section>
         </div>
