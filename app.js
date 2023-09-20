@@ -187,7 +187,9 @@ document.querySelector('#player-search').addEventListener('input', (e) => {
 })
 const playerDetail = (pid) => {
     let play = players.filter((player) => player.id === pid);
-    document.querySelector('.banpage').classList.add('hideban')
+    document.querySelector('.banpage').classList.add('hideban');
+    document.querySelector('.hammerban').classList.add('hideban');
+    document.querySelector('.bantab').classList.remove('active-action')
     const {firstname, lastname, lixBalance, bankBalance, DOB, helixName, job, XP, rank, country, cashBalance, phoneNumber, id} = play[0]
     document.querySelector('.firstname').innerHTML = firstname;
     document.querySelector('.lastname').innerHTML = lastname;
@@ -228,6 +230,12 @@ document.querySelector('#ban-reason').addEventListener('input', (e) => {
     let reason = e.target.value
     document.querySelector('.wordcount').innerHTML = reason.length;
 })
+
+const toggleDuration = () => {
+    document.querySelector('.days').classList.toggle('duration-active');
+    document.querySelector('.duration').classList.toggle('hideban');
+}
+
 const closeAdmin = () => {
     document.querySelector('#admin').classList.add('hide-element');
 }
