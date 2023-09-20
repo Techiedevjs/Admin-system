@@ -1,5 +1,5 @@
 ::-webkit-scrollbar {
-    width: 2px;
+    width: 0.1vw;
 }
 ::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey;
@@ -10,11 +10,11 @@
     border-radius: 5px;
 }
 :root{
-    --fontxsmall: clamp(12px, 0.73vw, 20px);
-    --fontsmall: clamp(14px, 0.83vw, 30px);
-    --fontmedium: clamp(16px, 1vw, 30px);
-    --fontlarge: clamp(20px, 1.2vw , 40px);
-    --fontxl: clamp(22px, 1.4vw, 50px);
+    --fontxsmall: 0.73vw;
+    --fontsmall: 0.83vw;
+    --fontmedium: 1vw;
+    --fontlarge: 1.2vw;
+    --fontxl: 1.4vw;
     --padlittle: clamp(5px, 0.5vw, 25px);
     --padmedium: clamp(10px, 0.7vw, 30px);
     --padlarge: clamp(15px, 1vw, 100px);
@@ -120,36 +120,38 @@ body{
 }
 main{
     position: relative;
-    padding: 4%;
+    padding: 4.6%;
     width: 75vw;
     aspect-ratio: 1440/810;
     border-radius: calc(2 * var(--radius));
     border: 0.1vw solid #00D9B2;
     background:  rgba(0, 0, 0, 0.94);
+    overflow: hidden;
 }
 .cancelAdmin{
     position: absolute;
     width: 3.5%;
     aspect-ratio: 1/1;
-    right: 3%;
-    top: 2%;
+    right: 2vw;
+    top: 2vw;
 }
 .content-container{
     display: grid;
-    grid-template-columns: 1fr 6fr;
+    grid-template-columns: 1fr 3fr;
     width: 100%;
     height: 100%;
+    overflow: hidden;
     gap: calc(1.7 * var(--gaplarge));
 }
 aside{
     display: flex;
-    gap: var(--gap);
+    gap: 1vw;
     flex-direction: column;
 }
 .players-online-container{
     display: flex;
     justify-content: space-between;
-    padding: var(--padmedium);
+    padding: 1vw;
     align-items: center;
     border-radius: var(--radius);
     border: 1px solid rgba(255, 255, 255, 0.05);
@@ -198,16 +200,17 @@ aside{
     border: none;
     color: white;
     font-size: var(--fontsmall);
+    width: 100%;
 }
 .player-search svg{
-    width: var(--fontsmall);
+    width: var(--fontmedium);
     aspect-ratio: 1/1;
 }
 .players{
     display: flex;
     flex-direction: column;
     gap: calc(0.7 * var(--padlittle));
-    height: 50vh;
+    height: 23vw;
     overflow-y: scroll;
     padding-right: var(--padlittle);
 }
@@ -240,8 +243,8 @@ aside{
 .player div{
     border-radius: calc(0.9 * var(--radius));
     border: 1px solid rgba(255, 255, 255, 0.65);
-    width: 40px;
-    height: 40px;
+    width: 2.1vw;
+    height: 2.1vw;
 }
 .player img{
     width: 100%;
@@ -277,8 +280,12 @@ aside{
     justify-content: flex-end;
     height: 100%;
 }
+.job-rank-xp div:has(.job) svg{
+    width: var(--fontmedium);
+    aspect-ratio: 1/1;
+}
 #pages{
-    margin-bottom: 2vw;
+    margin-bottom: 1.6vh;
     gap: 0.5vw;
 }
 #pages div{
@@ -428,7 +435,6 @@ transform: translateX(-50%);
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0.5vw;
-    margin-top: 1vw;
 }
 .svgbox, .minisvgbox{
     display: flex;
@@ -470,8 +476,7 @@ transform: translateX(-50%);
     justify-content: center;
     align-items: center;
     z-index: 5;
-    backdrop-filter: blur(5px);
-    background: url(images/banbackground.svg) 100% no-repeat, rgba(0, 0, 0, 0.55);
+    /* background: url(images/banbackground.svg; */
 }
 .ban-content{
     display: flex;
@@ -480,12 +485,7 @@ transform: translateX(-50%);
     flex-direction: column;
     gap: var(--gaplarge);
     text-align: center;
-    /* width: 16.7vw; */
 }
-/* .ban-content svg{
-    width: 2.4vw;
-    aspect-ratio: 1/1;
-} */
 .ban-content h5{
     color: #FFF;
     font-size: var(--fontmedium);
@@ -520,7 +520,7 @@ transform: translateX(-50%);
     border-radius: var(--radius);
     border: 1px solid rgba(255, 255, 255, 0.45);
     background: rgba(255, 255, 255, 0.02);
-    padding: var(--padmedium);
+    padding: var(--padlittle) var(--padmedium);
 }
 .ban-btns{
     display: flex;
@@ -538,7 +538,7 @@ transform: translateX(-50%);
     color: rgba(255, 255, 255, 0.80);
     flex: 1;
 }
-.confirmban:hover{
+.confirmban:hover, .backtopageone:hover{
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: white !important;
 }
@@ -561,9 +561,13 @@ transform: translateX(-50%);
 }
 .hammerban{
     position: absolute;
-    bottom: 0;
     right: 0;
-    z-index: 10;
+    z-index: 3;
+    bottom: 0;
+    width: 72%;
+    height: 80%;
+    backdrop-filter: blur(5px);
+    background:  url(images/banbackground.svg) 100% no-repeat, url(images/hammer.svg) bottom right no-repeat, rgba(0, 0, 0, 0.1);
 }
 .maxlength{
     font-size: calc(0.9 * var(--fontxsmall));
@@ -587,4 +591,78 @@ transform: translateX(-50%);
     border-radius: 10px;
     border: 1px solid rgba(255, 255, 255, 0.15);
     padding: var(--padmedium);
+}
+.days svg{
+    width: calc(0.9 * var(--fontxsmall));
+}
+.days:hover{
+    color: black;
+    background: white;
+    border-width: 0.1vw;
+}
+.days:hover svg path{
+    fill: black;
+}
+.duration-active{
+    color: rgba(0, 217, 178, 0.8);
+    background: rgba(0, 217, 178, 0.05);
+    border: 0.1vw solid rgba(0, 217, 178, 0.2);
+}
+.duration-active svg{
+    transform: rotate(180deg);
+}
+.duration-active svg path{
+    fill: rgba(0, 217, 178, 0.8);
+}
+.duration-cont{
+    position: relative;
+}
+.duration{
+    position: absolute;
+    font-size: 0.625vw;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    color: black;
+    right: -29%;
+    top: 20%;
+    border-radius: 0.5vw;
+}
+.duration div{
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+    gap: 0.5vw;
+    padding: 0.5vw;
+    cursor: pointer;
+    border-right: 0.15vw solid rgba(0, 0, 0, 0.25);
+    border-left: 0.15vw solid rgba(0, 0, 0, 0.25);
+}
+.duration div:hover{
+    background: rgba(0, 217, 178, 0.1);
+    border: 0.15vw solid rgba(0, 217, 178, 0.2);
+    color: rgba(0, 217, 178, 0.4);
+}
+.duration div:hover span{
+    border: 0.1vw solid rgba(0, 217, 178, 1);
+}
+.duration span{
+    display: block;
+    width: 0.6vw;
+    height: 0.6vw;
+    border-radius: 50%;
+    border: 0.1vw solid rgba(0, 0, 0, 0.45);
+    background: rgba(255, 255, 255, 0.90);
+}
+.weeks{
+    border: 0.15vw solid rgba(0, 0, 0, 0.25);
+}
+.hours{
+    border-top: 0.15vw solid rgba(0, 0, 0, 0.25);
+    border-radius: 0.5vw 0.5vw 0 0 ;
+}
+.months{
+    border-bottom: 0.15vw solid rgba(0, 0, 0, 0.25);
+    border-radius: 0 0 0.5vw 0.5vw;
 }
