@@ -13,6 +13,7 @@ let players = [
         job: "taxi job",
         phoneNumber: "034-456-986",
         country: "Canada",
+        flag: "images/country.svg"
     },
     {
         id: "qewrsi25805694",
@@ -28,6 +29,7 @@ let players = [
         job: "jagun jagun",
         phoneNumber: "987-345-123",
         country: "England",
+        flag: "images/country.svg"
     },
     {
         id: "rsitey65werier45643yu",
@@ -43,6 +45,7 @@ let players = [
         job: "Tracker",
         phoneNumber: "784-345-234",
         country: "egypt",
+        flag: "images/country.svg"
     },
     {
         id: "wer34yus9eruuer5674s",
@@ -58,6 +61,7 @@ let players = [
         job: "police",
         phoneNumber: "009-876-345",
         country: "belarus",
+        flag: "images/country.svg"
     },
     {
         id: "W678iops673jsdkyierss34",
@@ -73,6 +77,7 @@ let players = [
         job: "driver",
         phoneNumber: "345-907-563",
         country: "nigeria",
+        flag: "images/country.svg"
     },
     {
         id: "W678iopsfgf43jsdkyierss34",
@@ -88,6 +93,7 @@ let players = [
         job: "taxi job",
         phoneNumber: "346-997-563",
         country: "nigeria",
+        flag: "images/country.svg"
     },
     {
         id: "W678iops673jsdkyieiop34",
@@ -103,21 +109,20 @@ let players = [
         job: "villian",
         phoneNumber: "345-987-063",
         country: "russia",
+        flag: "images/country.svg"
     },
 ]
-let allpages = document.querySelectorAll('#pages div');
-allpages.forEach((page) => {
-    page.addEventListener('click', () => {
-        page.classList.add('page-active');
-        let otherpages = []
-        allpages.forEach((el) => {
-            if(el !== page){
-                el.classList.remove('page-active')
-            }
-        })
-        otherpages.map((i) => i.classList.remove())
+const contents = ['.page1', '.page2', '.page3'];
+const displayPage = (page) => {
+    let p = contents.filter(cont => cont === page);
+    let others = contents.filter(cont => cont !== page);
+    others.map((i) => {
+        document.querySelector(i).classList.remove('page-active')
+        document.querySelector(`${i}-content`).classList.add('hide-element')
     })
-})
+    document.querySelector(p).classList.add('page-active')
+    document.querySelector(`${p}-content`).classList.remove('hide-element')
+}
 const refreshTotalPlayers = () => {
     document.querySelector('.total-players').innerHTML = players.length;
 }
@@ -185,12 +190,33 @@ document.querySelector('#player-search').addEventListener('input', (e) => {
     let data = players.filter((player) => player.firstname.includes(val) || player.lastname.includes(val))
     fetchPlayers(data)
 })
-const playerDetail = (pid) => {
-    let play = players.filter((player) => player.id === pid);
+let selected = {
+    playerId : players[0].id,
+}
+let options = ['hours', 'days', 'weeks', 'months'];
+let selectedOption = "days"
+const selectOption = (option) => {
+    selectedOption = option;
+    document.querySelector('.selected').innerHTML = option
+    let otheroptions = options.filter((opt) => opt !== option)
+    document.querySelector(`.${option} span`).classList.add('option-picked')
+    otheroptions.map((op) => {
+        document.querySelector(`.${op} span`).classList.remove('option-picked')
+    })
+}
+const backToProfile = () => {
+    selectOption('days')
+    document.querySelector('.period').classList.remove('duration-active');
+    document.querySelector('.duration').classList.add('hideban');
     document.querySelector('.banpage').classList.add('hideban');
     document.querySelector('.hammerban').classList.add('hideban');
-    document.querySelector('.bantab').classList.remove('active-action')
-    const {firstname, lastname, lixBalance, bankBalance, DOB, helixName, job, XP, rank, country, cashBalance, phoneNumber, id} = play[0]
+    document.querySelector('.bantab').classList.remove('active-action');
+}
+const playerDetail = (pid) => {
+    selected.playerId = pid
+    let play = players.filter((player) => player.id === pid);
+    backToProfile()
+    const {firstname, lastname, lixBalance, bankBalance, DOB, flag, helixName, job, XP, rank, country, cashBalance, phoneNumber, id} = play[0]
     document.querySelector('.firstname').innerHTML = firstname;
     document.querySelector('.lastname').innerHTML = lastname;
     document.querySelector('.dob').innerHTML = DOB;
@@ -203,7 +229,8 @@ const playerDetail = (pid) => {
     document.querySelector('.cashbalance').innerHTML = cashBalance + " $"
     document.querySelector('.helixname').innerHTML = helixName
     document.querySelector('.lixbalance').innerHTML = lixBalance
-    document.querySelector('.helixid').innerHTML = id
+    document.querySelector('.helixid').innerHTML = id;
+    document.querySelector('.flag').src = flag;
 }
 playerDetail(players[0].id);
 playersTab[0].classList.add('active');
@@ -217,14 +244,14 @@ const banPlayer = () => {
     document.querySelector('.hammerban').classList.remove('hideban');
 }
 const confirmBan = () => {
+    let reason = document.querySelector('#ban-reason').value
+    let time = document.querySelector('#time').value
+    selected.banreason = reason
+    selected.period = time + " " + selectedOption
+    console.log(selected)
     document.querySelector('.banpage').classList.add('hideban');
     document.querySelector('.hammerban').classList.add('hideban');
     document.querySelector('.bantab').classList.add('active-action');
-}
-const backToProfile = () => {
-    document.querySelector('.banpage').classList.add('hideban');
-    document.querySelector('.hammerban').classList.add('hideban');
-    document.querySelector('.bantab').classList.remove('active-action');
 }
 document.querySelector('#ban-reason').addEventListener('input', (e) => {
     let reason = e.target.value
@@ -232,7 +259,7 @@ document.querySelector('#ban-reason').addEventListener('input', (e) => {
 })
 
 const toggleDuration = () => {
-    document.querySelector('.days').classList.toggle('duration-active');
+    document.querySelector('.period').classList.toggle('duration-active');
     document.querySelector('.duration').classList.toggle('hideban');
 }
 
