@@ -114,6 +114,7 @@ let players = [
 ]
 const contents = ['.page1', '.page2', '.page3'];
 const displayPage = (page) => {
+    backToProfile()
     let p = contents.filter(cont => cont === page);
     let others = contents.filter(cont => cont !== page);
     others.map((i) => {
