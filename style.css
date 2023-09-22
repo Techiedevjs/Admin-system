@@ -127,8 +127,6 @@ main{
     padding: 4.6%;
     width: 75vw;
     aspect-ratio: 1440/810;
-    border-radius: calc(2 * var(--radius));
-    border: 0.1vw solid #00D9B2;
     background:  url('images/adminbackground.png');
     background-repeat: no-repeat;
     background-size: cover;
@@ -143,7 +141,7 @@ main{
 }
 .content-container{
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: auto 1fr;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -156,12 +154,13 @@ aside{
     justify-content: flex-end;
 }
 .players-online-container{
+    width: 16.6vw;
+    aspect-ratio: 320/80;
     display: flex;
     justify-content: space-between;
     padding: 1.04vw;
     align-items: center;
-    border-radius: var(--radius);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 0.7vw;
     background: url(images/onlinebg.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -205,8 +204,9 @@ aside{
     border-radius: var(--radius);
     border: 1px solid rgba(255, 255, 255, 0.05);
     background: rgba(255, 255, 255, 0.03);
-    padding: 1vw;
+    padding:0 1vw;
     margin-top: 0.3125vw;
+    aspect-ratio: 320/60;
 }
 .player-search input{
     background: transparent;
@@ -225,21 +225,21 @@ aside{
     font-size: var(--fontsmall);
 }
 .player-search svg{
-    width: 1.1vw;
+    width: 20px;
     aspect-ratio: 1/1;
 }
 .players{
     display: flex;
     flex-direction: column;
     gap: 0.3125vw;
-    height: 22.9vw;
+    height: 24vw;
     overflow-y: scroll;
     padding-right: var(--padlittle);
     border-bottom: 1px solid rgba(255, 255, 255, 0.15);
 }
 .player{
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: var(--radius);
+    /* border: 1px solid rgba(255, 255, 255, 0.05); */
+    /* border-radius: 0.7vw; */
     padding: 1vw;
     display: flex;
     gap: var(--gap);
@@ -248,12 +248,13 @@ aside{
     background-repeat: no-repeat;
     position: relative;
     cursor: pointer;
+    width: 16vw !important;
+    aspect-ratio: 308/80;
 }
 .player:hover{
     background-image: url(images/playerhoverbg.png);
 }
 .active{
-    border: 1px solid rgba(255, 255, 255, 0.15);
     background-image: url(images/playeractivebg.png);
 }
 .active:hover{
@@ -327,6 +328,8 @@ aside{
     letter-spacing: 0.8px;
     padding: var(--padmedium);
     cursor: pointer;
+    width: 4.6875vw;
+    aspect-ratio: 90/48;
 }
 .page-active{
     color: white !important;
@@ -366,10 +369,12 @@ transform: translateX(-50%);
     letter-spacing: 0.8px;
     display: flex;
     justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
 }
 .initial{
     display: grid;
-    grid-template-columns: 2.5fr 1fr;
+    grid-template-columns: auto auto;
     gap: 2vw;
 }
 .player-info{
@@ -382,6 +387,8 @@ transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     gap: var(--gap);
+    width: 32.29vw;
+    aspect-ratio: 620/298;
 }
 .personal{
     display: grid;
@@ -389,24 +396,32 @@ transform: translateX(-50%);
     gap: 0.5vw;
 }
 .personal div, .helix-id-name div, .job-rank-xp, .actions, .ban-btns .flexsmall{
-    padding: var(--padmedium);
-    border-radius: calc(0.8 * var(--radius));
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* border-radius: 0.5vw; */
+    /* border: 1px solid rgba(255, 255, 255, 0.05); */
     background: url(images/actionsbg.png);
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
 }
 .personal div{
+    width: 9.47vw;
+    aspect-ratio: 182/66;
     background: url(images/profilebg.png);
     background-repeat: no-repeat;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1vw;
 }
 .helix-id-name div{
+    /* width: 15.2vw; */
     background: url(images/longnameidbg.png);
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
+    aspect-ratio: 292/44;
+    padding: 0px 1vw;
 }
 .personal div p {
     font-size: 0.625vw;
@@ -443,16 +458,22 @@ transform: translateX(-50%);
     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
     display: block;
 }
+.rank-country{
+    justify-content: space-between;
+}
 .job-rank-xp{
-    flex: 1;
-    height: 100%;
+    padding: 0 1vw;
+    width: 70.5%;
+    height: max-content !important;
+    aspect-ratio: 437/60;
     background: url(images/taxibg.png);
     background-repeat: no-repeat;
     background-size: cover;
     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
 }
 .country-phone .flexlittle{
-    justify-content: end;
+    justify-content: end !important;
+    color: rgba(255, 255, 255, 0.85);
 }
 .countrydetails{
     margin-top: 0.4vw;
@@ -465,16 +486,17 @@ transform: translateX(-50%);
     height: 100%;
     flex-direction: column;
     justify-content: space-between;
+    align-items: flex-end;
 }
 .action-buttons section{
     display: block;
     width: 70%;
-    margin:var(--padlittle) auto;
+    margin:1.197vw auto;
     height: 1px;
     background: rgba(255, 255, 255, 0.15);
 }
 .actions, .ban-btns .flexsmall{
-    padding: var(--padlittle);
+    padding: 0.46875vw;
     color: rgba(255, 255, 255, 0.80);
     font-weight: 400;
     letter-spacing: 0.8px;
@@ -487,6 +509,9 @@ transform: translateX(-50%);
     background: url(images/rightactionsbg.png) !important;
     background-repeat: no-repeat;
     background-size: cover !important;
+    width: 12.4vw;
+    aspect-ratio: 230/58;
+    border: 0;
 }
 .action-buttons .actions:hover{
     background-image: url(images/rightactionshoverbg.png) !important;
@@ -494,10 +519,17 @@ transform: translateX(-50%);
 .action-buttons .active-action{
     background-image: url(images/rightactionsactivebg.png) !important;
 }
+.action-buttons .active-action:hover{
+    background-image: url(images/rightactionsactivebg.png) !important;
+    opacity: 1;
+}
 .functions{
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0.5vw;
+}
+.functions .actions{
+    aspect-ratio: 170/58;
 }
 .svgbox, .minisvgbox{
     display: flex;
@@ -508,8 +540,8 @@ transform: translateX(-50%);
     background: url(images/infobg.png);
     background-repeat: no-repeat;
     background-size: cover;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 0.6vw;
+    /* border: 1px solid rgba(0, 0, 0, 0.15); */
+    /* border-radius: 0.6vw; */
     position: relative;
 }
 .righttop{
@@ -535,7 +567,7 @@ transform: translateX(-50%);
     background: url(images/greenbg.png);
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 0.4vw;
+    /* border-radius: 0.4vw; */
 }
 .gold{
     background: url(images/goldbg.png);
@@ -552,6 +584,9 @@ transform: translateX(-50%);
     justify-content: center;
     align-items: center;
     z-index: 5;
+    /* backdrop-filter: blur(4px); */
+    /* background: url(images/banbg.png) no-repeat center center; */
+    /* background-size: contain; */
 }
 .ban-content{
     display: flex;
@@ -612,7 +647,7 @@ transform: translateX(-50%);
 }
 .ban-btns{
     display: flex;
-    gap: var(--gap);
+    gap: 0.5vw;
     margin-top: 2vw;
     font-size: var(--fontsmall);
     font-weight: 400;
@@ -620,30 +655,31 @@ transform: translateX(-50%);
 }
 .backtopageone{
     color: rgba(255, 255, 255, 0.45) !important;
+    aspect-ratio: 120/58;
+    width: 6.25vw;
+    background-image: url(images/backbg.png) !important;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .backtopageone:hover{
     color: rgba(255, 40, 40, 0.80) !important;
-    border: 1px solid rgba(255, 40, 40, 0.25);
-    background: rgba(255, 40, 40, 0.1);
+    background-image: url(images/backhoverbg.png) !important;
 }
 .backtopageone:hover svg path{
     stroke: rgba(255, 40, 40, 1);
 }
 .backtopageone:hover .svgbox {
-    background: rgba(255, 40, 40, 0.15) !important;
+    background-image: url(images/backsvghoverbg.png)  !important;
 }
 .confirmban{
-    background: rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.80);
-    flex: 1;
+    aspect-ratio: 190/58;
 }
 .confirmban:hover{
-    border: 1px solid rgba(255, 255, 255, 0.1);
     color: white !important;
 }
 .active-action{
     background-image: url(images/actionsactivebg.png);
-    border: 1px solid rgba(0, 217, 178, 0.05);
 }
 .active-action .svgbox{
     background-image: url(images/activesvgbg.png);
@@ -657,7 +693,7 @@ transform: translateX(-50%);
     fill: #473404 !important;
 }
 .active-action:hover{
-    background:rgba(0, 217, 178, 0.15);
+    background-image: url(images/actionsactivebg.png);
     opacity: 0.25;
 }
 .active-action:has(.bottomglow):hover{
@@ -671,10 +707,10 @@ transform: translateX(-50%);
     right: 0;
     z-index: 3;
     bottom: 0;
-    width: 72%;
-    height: 80%;
-    backdrop-filter: blur(5px);
-    background:  url(images/banbackground.svg) 100% no-repeat, url(images/hammer.svg) bottom right no-repeat, rgba(0, 0, 0, 0.1);
+    width: 71%;
+    height: 32.8vw;
+    backdrop-filter: blur(7.5px);
+    background: url(images/banbackground.svg) center center no-repeat, url(images/hammer.svg) right bottom no-repeat;
 }
 .maxlength{
     font-size: 0.625vw;
