@@ -191,7 +191,7 @@ document.querySelector('#player-search').addEventListener('input', (e) => {
     let data = players.filter((player) => player.firstname.includes(val) || player.lastname.includes(val))
     fetchPlayers(data)
 })
-let selected = {
+let selectedPlayer = {
     playerId : players[0].id,
 }
 let options = ['hours', 'days', 'weeks', 'months'];
@@ -214,7 +214,7 @@ const backToProfile = () => {
     document.querySelector('.bantab').classList.remove('active-action');
 }
 const playerDetail = (pid) => {
-    selected.playerId = pid
+    selectedPlayer.playerId = pid
     let play = players.filter((player) => player.id === pid);
     backToProfile()
     const {firstname, lastname, lixBalance, bankBalance, DOB, flag, helixName, job, XP, rank, country, cashBalance, phoneNumber, id} = play[0]
@@ -247,9 +247,9 @@ const banPlayer = () => {
 const confirmBan = () => {
     let reason = document.querySelector('#ban-reason').value
     let time = document.querySelector('#time').value
-    selected.banreason = reason
-    selected.period = time + " " + selectedOption
-    console.log(selected)
+    selectedPlayer.banreason = reason
+    selectedPlayer.period = time + " " + selectedOption
+    console.log(selectedPlayer)
     document.querySelector('.banpage').classList.add('hideban');
     document.querySelector('.hammerban').classList.add('hideban');
     document.querySelector('.bantab').classList.add('active-action');
@@ -258,11 +258,50 @@ document.querySelector('#ban-reason').addEventListener('input', (e) => {
     let reason = e.target.value
     document.querySelector('.wordcount').innerHTML = reason.length;
 })
-
 const toggleDuration = () => {
     document.querySelector('.period').classList.toggle('duration-active');
     document.querySelector('.duration').classList.toggle('hideban');
 }
+
+document.querySelector('.go-to').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "go to player")
+})
+document.querySelector('.kill').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "kill player")
+})
+document.querySelector('.visibility').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "toggle player visibility")
+})
+document.querySelector('.noclip').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "noclip")
+})
+document.querySelector('.bring').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "bring player")
+})
+document.querySelector('.kick').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "kick player")
+})
+document.querySelector('.revive').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "revive player")
+})
+document.querySelector('.godmode').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "give godMode to player")
+})
+document.querySelector('.freeze').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "freeze player")
+})
+document.querySelector('.set-job').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "set-job")
+})
+document.querySelector('.give-vehicle').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "give vehicle")
+})
+document.querySelector('.fix-vehicle').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "fix-vehicle")
+})
+document.querySelector('.delete-vehicle').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "delete vehicle")
+})
 
 const closeAdmin = () => {
     document.querySelector('#admin').classList.add('hide-element');
