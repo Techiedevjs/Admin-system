@@ -211,6 +211,7 @@ const backToProfile = () => {
     document.querySelector('.duration').classList.add('hideban');
     document.querySelector('.banpage').classList.add('hideban');
     document.querySelector('.hammerban').classList.add('hideban');
+    document.querySelector('.hammer').classList.add('hide-element');
     document.querySelector('.bantab').classList.remove('active-action');
 }
 const playerDetail = (pid) => {
@@ -243,6 +244,7 @@ document.querySelectorAll('.actions').forEach((action) => {
 const banPlayer = () => {
     document.querySelector('.banpage').classList.remove('hideban');
     document.querySelector('.hammerban').classList.remove('hideban');
+    document.querySelector('.hammer').classList.remove('hide-element');
 }
 const confirmBan = () => {
     let reason = document.querySelector('#ban-reason').value
@@ -252,6 +254,7 @@ const confirmBan = () => {
     console.log(selectedPlayer)
     document.querySelector('.banpage').classList.add('hideban');
     document.querySelector('.hammerban').classList.add('hideban');
+    document.querySelector('.hammer').classList.add('hide-element');
     document.querySelector('.bantab').classList.add('active-action');
 }
 document.querySelector('#ban-reason').addEventListener('input', (e) => {
