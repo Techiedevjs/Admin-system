@@ -144,14 +144,15 @@ main{
     grid-template-columns: auto 1fr;
     width: 100%;
     height: 100%;
-    overflow: hidden;
-    gap: calc(1.7 * var(--gaplarge));
+    /* overflow: hidden; */
+    gap: 2vw;
 }
 aside{
     display: flex;
     gap: 1vw;
     flex-direction: column;
     justify-content: flex-end;
+    position: relative;
 }
 .players-online-container{
     width: 16.6vw;
@@ -201,11 +202,12 @@ aside{
     display: flex;
     align-items: center;
     gap: var(--gap);
-    border-radius: var(--radius);
+    border-radius: 0.7vw;
     border: 1px solid rgba(255, 255, 255, 0.05);
     background: rgba(255, 255, 255, 0.03);
     padding:0 1vw;
     margin-top: 0.3125vw;
+    width: 16.6vw;
     aspect-ratio: 320/60;
 }
 .player-search input{
@@ -235,11 +237,16 @@ aside{
     height: 24vw;
     overflow-y: scroll;
     padding-right: var(--padlittle);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.longline{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 16vw !important;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.15);
 }
 .player{
-    /* border: 1px solid rgba(255, 255, 255, 0.05); */
-    /* border-radius: 0.7vw; */
     padding: 1vw;
     display: flex;
     gap: var(--gap);
@@ -300,7 +307,7 @@ aside{
 .content-box{
     display: flex;
     flex-direction: column;
-    gap: var(--gap);
+    /* gap: var(--gap); */
     position: relative;
     justify-content: flex-end;
     height: 100%;
@@ -310,12 +317,11 @@ aside{
     aspect-ratio: 1/1;
 }
 #pages{
-    margin-bottom: 1.6vh;
+    /* margin-bottom: 1.2vw; */
     gap: 0.5vw;
+    /* margin-top: 0.7vw; */
 }
 #pages div{
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
     background: url(images/pagenonactive.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -330,6 +336,9 @@ aside{
     cursor: pointer;
     width: 4.6875vw;
     aspect-ratio: 90/48;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .page-active{
     color: white !important;
@@ -337,6 +346,7 @@ aside{
     background: url(images/pageactive.png) !important;
     background-repeat: no-repeat;
     background-size: cover;
+    border-radius: 10px;
 }
 .whiteline{
     display: none;
@@ -358,8 +368,9 @@ transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    gap: var(--gaplarge);
+    gap: 1vw;
     position: relative;
+    margin-top: 2vw;
 }
 .page-header{
     color: rgba(255, 255, 255, 0.65);
@@ -527,6 +538,7 @@ transform: translateX(-50%);
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 0.5vw;
+    margin-top: 0.6vw;
 }
 .functions .actions{
     aspect-ratio: 170/58;
@@ -579,13 +591,12 @@ transform: translateX(-50%);
     top: 50%;
     left: 50%;
     transform: translate(-50%,-50%);
-    width: 102%;
-    height: 102%;
+    width: 105%;
+    height: 105%;
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 5;
-    backdrop-filter: blur(7.5px);
 }
 .ban-content{
     display: flex;
@@ -632,7 +643,7 @@ transform: translateX(-50%);
 }
 .ban-content .flexlittle{
     border-radius: var(--radius);
-    border: 1px solid rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(255, 255, 255, 0.02);
     padding: var(--padlittle) var(--padmedium);
 }
@@ -650,7 +661,10 @@ transform: translateX(-50%);
     margin-top: 2vw;
     font-size: var(--fontsmall);
     font-weight: 400;
-    letter-spacing: 0.8px;
+    letter-spacing: 0.8px;    
+}
+.ban-btns .flexsmall{
+    filter: none;
 }
 .backtopageone{
     color: rgba(255, 255, 255, 0.45) !important;
@@ -712,7 +726,6 @@ transform: translateX(-50%);
     transform: translateY(-50%);
     width: 51vw;
     aspect-ratio: 1/1;
-    /* backdrop-filter: blur(4px); */
 }
 .hammerban img{
     width: 100%;
