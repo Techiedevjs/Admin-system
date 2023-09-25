@@ -210,12 +210,15 @@ const backToProfile = () => {
     document.querySelector('.period').classList.remove('duration-active');
     document.querySelector('.duration').classList.add('hideban');
     document.querySelector('.banpage').classList.add('hideban');
-    document.querySelector('.hammerban').classList.add('hideban');
     document.querySelector('.hammer').classList.add('hide-element');
     document.querySelector('.bantab').classList.remove('active-action');
     document.querySelector('.page-header').style.filter = 'none';
     document.querySelector('.player-info').style.filter = 'none';
+    document.querySelector('.action-buttons section').style.filter = 'none';
     document.querySelectorAll('.actions').forEach(elem => elem.style.filter = 'none');
+    document.querySelector('.initial').style.opacity = 1;
+    document.querySelector('.functions').style.opacity = 1;
+
 }
 const playerDetail = (pid) => {
     selectedPlayer.playerId = pid
@@ -246,11 +249,13 @@ document.querySelectorAll('.actions').forEach((action) => {
 })
 const banPlayer = () => {
     document.querySelector('.banpage').classList.remove('hideban');
-    document.querySelector('.hammerban').classList.remove('hideban');
     document.querySelector('.hammer').classList.remove('hide-element');
     document.querySelector('.page-header').style.filter = 'blur(7.5px)';
     document.querySelector('.player-info').style.filter = 'blur(7.5px)';
+    document.querySelector('.action-buttons section').style.filter = 'blur(7.5px)';
     document.querySelectorAll('.actions').forEach(elem => elem.style.filter = 'blur(7.5px)');
+    document.querySelector('.initial').style.opacity = '.5';
+    document.querySelector('.functions').style.opacity = '.5';
 }
 const confirmBan = () => {
     let reason = document.querySelector('#ban-reason').value
@@ -259,12 +264,14 @@ const confirmBan = () => {
     selectedPlayer.period = time + " " + selectedOption
     console.log(selectedPlayer)
     document.querySelector('.banpage').classList.add('hideban');
-    document.querySelector('.hammerban').classList.add('hideban');
     document.querySelector('.hammer').classList.add('hide-element');
     document.querySelector('.bantab').classList.add('active-action');
     document.querySelector('.page-header').style.filter = 'none';
     document.querySelector('.player-info').style.filter = 'none';
+    document.querySelector('.action-buttons section').style.filter = 'blur(7.5px)';
     document.querySelectorAll('.actions').forEach(elem => elem.style.filter = 'none');
+    document.querySelector('.initial').style.opacity = 1;
+    document.querySelector('.functions').style.opacity = 1;
 }
 document.querySelector('#ban-reason').addEventListener('input', (e) => {
     let reason = e.target.value
