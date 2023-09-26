@@ -1,82 +1,139 @@
-const players = [
+let players = [
     {
-        id: "Wrersi45",
+        id: "Wrersi45uirtu456",
         firstname: "john",
         lastname: "oils",
-        DOB: "",
-        lixBalance: "",
+        DOB: "06/07/1989",
+        lixBalance: 340,
         bankBalance: 0,
-        helixName: "",
-        XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        cashBalance: 23450,
+        helixName: "theKillerWhale",
+        XP: 9,
+        rank: 3,
+        job: "taxi job",
+        phoneNumber: "034-456-986",
+        country: "Canada",
+        flag: "images/country.svg"
     },
     {
-        id: "qewrsi25",
+        id: "qewrsi25805694",
         firstname: "sander",
         lastname: "jones",
-        DOB: "",
-        lixBalance: "",
-        bankBalance: 0,
-        helixName: "",
-        XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        DOB: "07/07/1999",
+        lixBalance: 450,
+        bankBalance: 3000,
+        cashBalance: 23450,
+        helixName: "brokeNigga",
+        XP: 32,
+        rank: 12,
+        job: "jagun jagun",
+        phoneNumber: "987-345-123",
+        country: "England",
+        flag: "images/country.svg"
     },
     {
-        id: "rsitey65",
+        id: "rsitey65werier45643yu",
         firstname: "james",
         lastname: "bond",
-        DOB: "",
-        lixBalance: "",
-        bankBalance: 0,
-        helixName: "",
+        DOB: "09/12/2004",
+        lixBalance: 700,
+        bankBalance: 15789,
+        cashBalance: 23450,
+        helixName: "Kindkiller",
         XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        rank: 1,
+        job: "Tracker",
+        phoneNumber: "784-345-234",
+        country: "egypt",
+        flag: "images/country.svg"
     },
     {
-        id: "wer34yus9",
+        id: "wer34yus9eruuer5674s",
         firstname: "martinez",
         lastname: "cruz",
-        DOB: "",
-        lixBalance: "",
+        DOB: "12/09/1989",
+        lixBalance: 50,
         bankBalance: 0,
-        helixName: "",
-        XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        cashBalance: 23450,
+        helixName: "AbsoluteDanger",
+        XP: 35,
+        rank: 50,
+        job: "police",
+        phoneNumber: "009-876-345",
+        country: "belarus",
+        flag: "images/country.svg"
     },
     {
-        id: "W678iops",
+        id: "W678iops673jsdkyierss34",
         firstname: "jane",
         lastname: "doe",
-        DOB: "",
+        DOB: "10/08/2023",
         lixBalance: "",
         bankBalance: 0,
-        helixName: "",
-        XP: 0,
-        rank: 0,
-        job: "",
-        phoneNumber: "",
-        country: "",
+        cashBalance: 23450,
+        helixName: "daggerman",
+        XP: 40,
+        rank: 10,
+        job: "driver",
+        phoneNumber: "345-907-563",
+        country: "nigeria",
+        flag: "images/country.svg"
+    },
+    {
+        id: "W678iopsfgf43jsdkyierss34",
+        firstname: "jackson",
+        lastname: "dreed",
+        DOB: "10/08/2001",
+        lixBalance: 67,
+        bankBalance: 0,
+        cashBalance: 23450,
+        helixName: "mohbad",
+        XP: 40,
+        rank: 10,
+        job: "taxi job",
+        phoneNumber: "346-997-563",
+        country: "nigeria",
+        flag: "images/country.svg"
+    },
+    {
+        id: "W678iops673jsdkyieiop34",
+        firstname: "opera",
+        lastname: "winnie",
+        DOB: "10/08/2003",
+        lixBalance: 90,
+        bankBalance: 9070,
+        cashBalance: 23450,
+        helixName: "despicable-me",
+        XP: 40,
+        rank: 10,
+        job: "villian",
+        phoneNumber: "345-987-063",
+        country: "russia",
+        flag: "images/country.svg"
     },
 ]
-
+const contents = ['.page1', '.page2', '.page3'];
+const displayPage = (page) => {
+    backToProfile()
+    let p = contents.filter(cont => cont === page);
+    let others = contents.filter(cont => cont !== page);
+    others.map((i) => {
+        document.querySelector(i).classList.remove('page-active')
+        document.querySelector(`${i}-content`).classList.add('hide-element')
+    })
+    document.querySelector(p).classList.add('page-active')
+    document.querySelector(`${p}-content`).classList.remove('hide-element')
+}
+const refreshTotalPlayers = () => {
+    document.querySelector('.total-players').innerHTML = players.length;
+}
 const fetchPlayers = (data) => {
     document.querySelector('.players').innerHTML = ""
+    refreshTotalPlayers()
     data.map((player) => {
         const {firstname, lastname, id} = player
         document.querySelector('.players').innerHTML  += `
-            <div class="player" id="${id}">
+            <div class="player" id="${id}" onclick="playerDetail('${id}')">
             <svg xmlns="http://www.w3.org/2000/svg" class="player-glow" width="18" height="52" viewBox="0 0 18 52" fill="none">
                 <g filter="url(#filter0_d_13919_1220)">
                 <path d="M1 13C3.20914 13 5 14.7909 5 17V35C5 37.2091 3.20914 39 1 39V13Z" fill="#57FFAF" fill-opacity="0.4" shape-rendering="crispEdges"/>
@@ -117,16 +174,159 @@ const fetchPlayers = (data) => {
     })
 }
 fetchPlayers(players)
+let currentPlayer;
+const playersTab = document.querySelectorAll('.player');
+playersTab.forEach((p) => {
+    p.addEventListener('click', () => {
+        p.classList.add('active')
+        let others = []
+        playersTab.forEach((i) => {
+            i !== p && others.push(i)
+        })
+        others.map((i) => i.classList.remove('active'))
+    })
+})
 document.querySelector('#player-search').addEventListener('input', (e) => {
     let val = e.target.value.toLowerCase()
     let data = players.filter((player) => player.firstname.includes(val) || player.lastname.includes(val))
     fetchPlayers(data)
 })
+let selectedPlayer = {
+    playerId : players[0].id,
+}
+let options = ['hours', 'days', 'weeks', 'months'];
+let selectedOption = "days"
+const selectOption = (option) => {
+    selectedOption = option;
+    document.querySelector('.selected').innerHTML = option
+    let otheroptions = options.filter((opt) => opt !== option)
+    document.querySelector(`.${option} span`).classList.add('option-picked')
+    otheroptions.map((op) => {
+        document.querySelector(`.${op} span`).classList.remove('option-picked')
+    })
+}
+const backToProfile = () => {
+    selectOption('days')
+    document.querySelector('.period').classList.remove('duration-active');
+    document.querySelector('.duration').classList.add('hideban');
+    document.querySelector('.banpage').classList.add('hideban');
+    document.querySelector('.hammer').classList.add('hide-element');
+    document.querySelector('.bantab').classList.remove('active-action');
+    document.querySelector('.page-header').style.filter = 'none';
+    document.querySelector('.player-info').style.filter = 'none';
+    document.querySelector('.action-buttons section').style.filter = 'none';
+    document.querySelectorAll('.actions').forEach(elem => elem.style.filter = 'none');
+    document.querySelector('.initial').style.opacity = 1;
+    document.querySelector('.functions').style.opacity = 1;
+
+}
+const playerDetail = (pid) => {
+    selectedPlayer.playerId = pid
+    let play = players.filter((player) => player.id === pid);
+    backToProfile()
+    const {firstname, lastname, lixBalance, bankBalance, DOB, flag, helixName, job, XP, rank, country, cashBalance, phoneNumber, id} = play[0]
+    document.querySelector('.firstname').innerHTML = firstname;
+    document.querySelector('.lastname').innerHTML = lastname;
+    document.querySelector('.dob').innerHTML = DOB;
+    document.querySelector('.phonenumber').innerHTML = phoneNumber;
+    document.querySelector('.rank').innerHTML = rank;
+    document.querySelector('.xp').innerHTML = XP;
+    document.querySelector('.country').innerHTML = country;
+    document.querySelector('.job').innerHTML = job
+    document.querySelector('.bankbalance').innerHTML = bankBalance + " $"
+    document.querySelector('.cashbalance').innerHTML = cashBalance + " $"
+    document.querySelector('.helixname').innerHTML = helixName
+    document.querySelector('.lixbalance').innerHTML = lixBalance
+    document.querySelector('.helixid').innerHTML = id;
+    document.querySelector('.flag').src = flag;
+}
+playerDetail(players[0].id);
+playersTab[0].classList.add('active');
+document.querySelectorAll('.actions').forEach((action) => {
+    action.addEventListener('click', () => {
+        action.classList.toggle('active-action');
+    })
+})
+const banPlayer = () => {
+    document.querySelector('.banpage').classList.remove('hideban');
+    document.querySelector('.hammer').classList.remove('hide-element');
+    document.querySelector('.page-header').style.filter = 'blur(7.5px)';
+    document.querySelector('.player-info').style.filter = 'blur(7.5px)';
+    document.querySelector('.action-buttons section').style.filter = 'blur(7.5px)';
+    document.querySelectorAll('.actions').forEach(elem => elem.style.filter = 'blur(7.5px)');
+    document.querySelector('.initial').style.opacity = '.5';
+    document.querySelector('.functions').style.opacity = '.5';
+}
+const confirmBan = () => {
+    let reason = document.querySelector('#ban-reason').value
+    let time = document.querySelector('#time').value
+    selectedPlayer.banreason = reason
+    selectedPlayer.period = time + " " + selectedOption
+    console.log(selectedPlayer)
+    document.querySelector('.banpage').classList.add('hideban');
+    document.querySelector('.hammer').classList.add('hide-element');
+    document.querySelector('.bantab').classList.add('active-action');
+    document.querySelector('.page-header').style.filter = 'none';
+    document.querySelector('.player-info').style.filter = 'none';
+    document.querySelector('.action-buttons section').style.filter = 'blur(7.5px)';
+    document.querySelectorAll('.actions').forEach(elem => elem.style.filter = 'none');
+    document.querySelector('.initial').style.opacity = 1;
+    document.querySelector('.functions').style.opacity = 1;
+}
+document.querySelector('#ban-reason').addEventListener('input', (e) => {
+    let reason = e.target.value
+    document.querySelector('.wordcount').innerHTML = reason.length;
+})
+const toggleDuration = () => {
+    document.querySelector('.period').classList.toggle('duration-active');
+    document.querySelector('.duration').classList.toggle('hideban');
+}
+
+document.querySelector('.go-to').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "go to player")
+})
+document.querySelector('.kill').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "kill player")
+})
+document.querySelector('.visibility').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "toggle player visibility")
+})
+document.querySelector('.noclip').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "noclip")
+})
+document.querySelector('.bring').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "bring player")
+})
+document.querySelector('.kick').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "kick player")
+})
+document.querySelector('.revive').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "revive player")
+})
+document.querySelector('.godmode').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "give godMode to player")
+})
+document.querySelector('.freeze').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "freeze player")
+})
+document.querySelector('.set-job').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "set-job")
+})
+document.querySelector('.give-vehicle').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "give vehicle")
+})
+document.querySelector('.fix-vehicle').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "fix-vehicle")
+})
+document.querySelector('.delete-vehicle').addEventListener('click', () => {
+    console.log(selectedPlayer.playerId, "delete vehicle")
+})
+
 const closeAdmin = () => {
-    document.querySelector('#admin').classList.add('hide-element')
+    document.querySelector('#admin').classList.add('hide-element');
 }
 const toggleDisplay = () =>{
-    document.querySelector('#admin').classList.toggle('hide-element')
+    document.querySelector('#admin').classList.toggle('hide-element');
 }
 document.addEventListener('keydown', evt => {
     if (evt.key === 'Home') {
