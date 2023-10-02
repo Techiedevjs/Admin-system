@@ -362,9 +362,9 @@ aside{
     color: white !important;
     position: relative;   
     background: url(images/pageactive.png) !important;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 10px;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    border-radius: 0.5vw;
 }
 .whiteline{
     display: none;
@@ -424,9 +424,7 @@ transform: translateX(-50%);
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5vw;
 }
-.personal div, .helix-id-name div, .job-rank-xp, .actions, .ban-btns .flexsmall{
-    /* border-radius: 0.5vw; */
-    /* border: 1px solid rgba(255, 255, 255, 0.05); */
+.personal div, .job-rank-xp, .actions, .ban-btns .flexsmall{
     background: url(images/actionsbg.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -443,8 +441,8 @@ transform: translateX(-50%);
     justify-content: center;
     padding-left: 1vw;
 }
-.helix-id-name div{
-    /* width: 15.2vw; */
+.helix-id-name .helixnamecont{
+    width: 15.2vw;
     background: url(images/longnameidbg.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -452,8 +450,63 @@ transform: translateX(-50%);
     aspect-ratio: 292/44;
     padding: 0px 1vw;
 }
-.personal div p {
+.helix-id-name .idbox{
+    width: 13.75vw;
+    background: url(images/idbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
+    aspect-ratio: 264/44;
+    padding: 0px 1vw;
+    cursor: pointer;
+    position: relative;
+}
+.full-id{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5.468vw;
+    background: url(images/fullidbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 0.78vw 1vw 0 1vw;
+}
+.full-id article{
+    display: flex;
+    gap: 0.5vw;
+    align-items: flex-start;
+}
+.helix-id-name .idbox:hover{
+    background: url(images/idhoverbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.copy{
+    color: rgba(255, 255, 255, 0.65);
     font-size: 0.625vw;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    margin-top: 0.5vw;
+    background: url(images/copybg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 4vw;
+    aspect-ratio: 77/30;
+    justify-content: center;
+    cursor: pointer;
+}
+.copy:hover{
+     background: url(images/copyhoverbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.copy svg{
+    width: 0.73vw;
+    aspect-ratio: 1/1;
+}
+.personal div p {
+    font-size: 0.73vw;
     color: rgba(255, 255, 255, 0.50);
 }
 .player-info .spacebetween p{
@@ -469,7 +522,7 @@ transform: translateX(-50%);
 }
 .helix-id-name{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
     gap: 0.5vw;
     align-items: center;
 }
@@ -482,7 +535,7 @@ transform: translateX(-50%);
 .dot{
     width: 4px;
     height: 4px;
-    border-radius: 10px;
+    border-radius: 50%;
     background: rgba(255, 255, 255, 0.50);
     box-shadow: 0px 0px 16px 0px rgba(0, 0, 0, 0.25);
     display: block;
@@ -520,7 +573,7 @@ transform: translateX(-50%);
 .action-buttons section{
     display: block;
     width: 70%;
-    margin:1.197vw auto;
+    margin:1vw auto;
     height: 1px;
     background: rgba(255, 255, 255, 0.15);
 }
@@ -702,13 +755,13 @@ transform: translateX(-50%);
 .backtopageone:hover .svgbox {
     background-image: url(images/backsvghoverbg.png)  !important;
 }
-.confirmban{
+.confirmAction{
     background-image: url(images/confirmbg.png) !important;
     color: rgba(255, 255, 255, 0.80);
     aspect-ratio: 190/58;
     width: 9.8958vw !important;
 }
-.confirmban:hover{
+.confirmAction:hover{
     color: white !important;
     background-image: url(images/confirmhoverbg.png) !important;
 }
@@ -859,10 +912,122 @@ transform: translateX(-50%);
 .selected{
     text-transform: uppercase;
 }
-.hammer{
+.hammer, .setjobsvg, .givevehicle{
     position: absolute;
     bottom: 0;
     right: 0;
     width: 14.3vw;
     z-index: 6;
+}
+.setjobpage, .givevehiclepage{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 105%;
+    height: 105%;
+    z-index: 5;
+    padding: 1vw;
+}
+.setjobpagecontent{
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    width: max-content;
+}
+.setjobheader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2vw;
+}
+.setjobheader div p{
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 0.9375vw;
+    font-weight: 600;
+    letter-spacing: 1.8px;
+}
+.setjobheader div h3{
+    font-size: 1.25vw;
+    font-weight: 700;
+    letter-spacing: 3.36px;
+}
+.setjobheader div:first-of-type svg{
+    width: 2.4vw;
+    aspect-ratio: 1/1;
+}
+.searchjob{
+    background: url(images/setjobsearch.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 12.5vw;
+    aspect-ratio: 240/60;
+    display: flex;
+    align-items: center;
+    padding: 0 1vw;
+}
+.searchjob p{
+    flex: 1;
+}
+.searchjob input{
+    outline: none;
+    border: none;
+    width: 100%;    
+    background: transparent;
+}
+.searchjob svg{
+    width: 1vw !important;
+    aspect-ratio: 1/1;
+}
+.searchjob input, .searchjob input::placeholder{
+    color: rgba(255, 255, 255, 0.65);
+    font-size: var(--fontsmall);
+    font-weight: 400;
+    letter-spacing: 0.8px;
+}
+.jobs, .vehicles{
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: left;
+    gap: 0.5vw;
+    height: 15.6vw;
+    overflow-y: scroll;
+    grid-template-rows: min-content;
+    padding-right: 0.5vw;
+}
+.setjob, .vehicle{
+    width: 16vw;
+    aspect-ratio: 308/80;
+    background: url(images/jobbg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 1.25vw;
+    cursor: pointer;
+}
+.setjob:hover, .vehicle:hover{
+    background-image: url(images/playerhoverbg.png);
+}
+.setjob h4, .vehicle h4{
+    color: #FFF;
+    font-size: 0.9375vw;
+    font-weight: 500;
+    letter-spacing: 0.9px;
+    text-transform: capitalize;
+}
+.setjob p, .vehicle p{
+    color: rgba(255, 255, 255, 0.50);
+    font-size: var(--fontxsmall);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.setjobpagecontent .ban-btns{
+    margin-top: 0;
+}
+.selecteditem{
+    background-image: url(images/playeractivebg.png) !important;
+}
+.toggle-opacity{
+    opacity: .2 !important;
 }
