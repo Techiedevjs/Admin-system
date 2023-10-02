@@ -1,6 +1,6 @@
 let players = [
     {
-        id: "Wrersi45uirtu456",
+        id: "Wrersi45uirtu456-opiui-jkioloi-90o",
         firstname: "john",
         lastname: "oils",
         DOB: "06/07/1989",
@@ -112,9 +112,145 @@ let players = [
         flag: "images/country.svg"
     },
 ]
+let vehicles = [
+    {
+        name: "bugatti",
+        id: "bgt124io"
+    },
+    {
+        name: "benz",
+        id: "bnz893ko"
+    },
+    {
+        name: "Lexus",
+        id: "lex908ry"
+    },
+    {
+        name: "porche",
+        id: "prh67ui"
+    },
+    {
+        name: "prada",
+        id: "prd567gf"
+    },
+    {
+        name: "mazda",
+        id: "mzd72hj"
+    },
+    {
+        name: "corolla",
+        id: "cll91hi"
+    },
+]
+let jobs = [
+    {
+        name: "driver",
+        id: "drv78yi"
+    },
+    {
+        name: "developer",
+        id: "dvp90er"
+    },
+    {
+        name: "police",
+        id: "pol34ie"
+    },
+    {
+        name: "doctor",
+        id: "dct12hu"
+    },
+    {
+        name: "lawyer",
+        id: "law47ey"
+    },
+    {
+        name: "thug",
+        id: "thg87lf"
+    },
+    {
+        name: "banker",
+        id: "bke89rw"
+    },
+]
+let selectedJob = ""
+let selectedVehicle = ""
+const selectJob = (jid) => {
+    let selected = document.querySelector(`#${jid}`);
+    selected.classList.add('selecteditem')
+    document.querySelectorAll('.setjob').forEach((item) => {
+        if(item !== selected){
+            item.classList.remove('selecteditem')
+        }
+    })
+    selectedJob = jid;
+}
+const pushJobs = (data) => {
+    document.querySelector('.jobs').innerHTML = "";
+    data.map((item) => {
+        const {name, id} = item;
+        document.querySelector('.jobs').innerHTML += `
+        <div class="setjob" id="${id}" onclick="selectJob('${id}')">
+            <h4>${name}</h4>
+            <p>ID: ${id}</p>
+        </div>
+        `
+    })
+}
+document.querySelector('#searchjobs').addEventListener('input', (e) => {
+    let val = e.target.value;
+    let searchOutput = jobs.filter((item) => item.name.includes(val.toLowerCase()))
+    pushJobs(searchOutput)
+})   
+const selectVehicle = (vid) => {
+    let selected = document.querySelector(`#${vid}`);
+    selected.classList.add('selecteditem')
+    document.querySelectorAll('.vehicle').forEach((item) => {
+        if(item !== selected){
+            item.classList.remove('selecteditem')
+        }
+    })
+    selectedVehicle = vid;
+}                                                                                                                                                                                                                                                                                                                                                                                                                   
+const pushVehicles = (data) => {
+    document.querySelector('.vehicles').innerHTML = "";
+    data.map((item) => {
+        const {name, id} = item;
+        document.querySelector('.vehicles').innerHTML += `
+        <div class="vehicle" id="${id}" onclick="selectVehicle('${id}')">
+            <h4>${name}</h4>
+            <p>ID: ${id}</p>
+        </div>
+        `
+    })
+}
+document.querySelector('#searchvehicles').addEventListener('input', (e) => {
+    let val = e.target.value;
+    let searchOutput = vehicles.filter((item) => item.name.includes(val.toLowerCase()))
+    pushVehicles(searchOutput)
+})
+pushJobs(jobs)
+pushVehicles(vehicles)
+document.querySelector('.idbox').addEventListener('click', () => {
+    document.querySelector('.full-id').classList.toggle('hideban');
+    document.querySelector('.functions').classList.toggle('toggle-opacity');
+    document.querySelector('.action-buttons').classList.toggle('toggle-opacity');
+    document.querySelector('.page-header').classList.toggle('toggle-opacity');
+    document.querySelector('.personal').classList.toggle('toggle-opacity');
+    document.querySelector('.spacebetween').classList.toggle('toggle-opacity');
+    document.querySelector('.helixnamecont').classList.toggle('toggle-opacity');
+    document.querySelector('.rank-country').classList.toggle('toggle-opacity');
+})
+
+const copyContent = () => {
+    let text = document.querySelector('.helixfullid').textContent;
+    navigator.clipboard.writeText(text);
+}
+
 const contents = ['.page1', '.page2', '.page3'];
 const displayPage = (page) => {
-    backToProfile()
+    backToProfile('.banpage', '.hammer');
+    backToProfile('.setjobpage', '.setjobsvg');
+    backToProfile('.givevehiclepage', '.givevehicle');
     let p = contents.filter(cont => cont === page);
     let others = contents.filter(cont => cont !== page);
     others.map((i) => {
@@ -205,25 +341,28 @@ const selectOption = (option) => {
         document.querySelector(`.${op} span`).classList.remove('option-picked')
     })
 }
-const backToProfile = () => {
+const backToProfile = (elem, elemimage) => {
     selectOption('days')
     document.querySelector('.period').classList.remove('duration-active');
     document.querySelector('.duration').classList.add('hideban');
-    document.querySelector('.banpage').classList.add('hideban');
-    document.querySelector('.hammer').classList.add('hide-element');
+    document.querySelector(elem).classList.add('hideban');
+    document.querySelector(elemimage).classList.add('hide-element');
     document.querySelector('.bantab').classList.remove('active-action');
     document.querySelector('.page-header').style.filter = 'none';
     document.querySelector('.player-info').style.filter = 'none';
     document.querySelector('.action-buttons section').style.filter = 'none';
     document.querySelectorAll('.actions').forEach(elem => elem.style.filter = 'none');
+    document.querySelectorAll('.vehicle').forEach(elem => elem.classList.remove('selecteditem'));
+    document.querySelectorAll('.setjob').forEach(elem => elem.classList.remove('selecteditem'));
     document.querySelector('.initial').style.opacity = 1;
     document.querySelector('.functions').style.opacity = 1;
-
 }
 const playerDetail = (pid) => {
     selectedPlayer.playerId = pid
     let play = players.filter((player) => player.id === pid);
-    backToProfile()
+    backToProfile('.banpage', '.hammer');
+    backToProfile('.setjobpage', '.setjobsvg');
+    backToProfile('.givevehiclepage', '.givevehicle');
     const {firstname, lastname, lixBalance, bankBalance, DOB, flag, helixName, job, XP, rank, country, cashBalance, phoneNumber, id} = play[0]
     document.querySelector('.firstname').innerHTML = firstname;
     document.querySelector('.lastname').innerHTML = lastname;
@@ -237,19 +376,20 @@ const playerDetail = (pid) => {
     document.querySelector('.cashbalance').innerHTML = cashBalance + " $"
     document.querySelector('.helixname').innerHTML = helixName
     document.querySelector('.lixbalance').innerHTML = lixBalance
-    document.querySelector('.helixid').innerHTML = id;
+    document.querySelector('.helixid').innerHTML = id.substring(0, 20) + '...';
+    document.querySelector('.helixfullid').innerHTML = id;
     document.querySelector('.flag').src = flag;
 }
 playerDetail(players[0].id);
 playersTab[0].classList.add('active');
-document.querySelectorAll('.actions').forEach((action) => {
+document.querySelectorAll('.toggle').forEach((action) => {
     action.addEventListener('click', () => {
         action.classList.toggle('active-action');
     })
 })
-const banPlayer = () => {
-    document.querySelector('.banpage').classList.remove('hideban');
-    document.querySelector('.hammer').classList.remove('hide-element');
+const actionPage = (elem, elemimage) => {
+    document.querySelector(elem).classList.remove('hideban');
+    document.querySelector(elemimage).classList.remove('hide-element');
     document.querySelector('.page-header').style.filter = 'blur(7.5px)';
     document.querySelector('.player-info').style.filter = 'blur(7.5px)';
     document.querySelector('.action-buttons section').style.filter = 'blur(7.5px)';
@@ -257,15 +397,20 @@ const banPlayer = () => {
     document.querySelector('.initial').style.opacity = '.5';
     document.querySelector('.functions').style.opacity = '.5';
 }
-const confirmBan = () => {
-    let reason = document.querySelector('#ban-reason').value
-    let time = document.querySelector('#time').value
-    selectedPlayer.banreason = reason
-    selectedPlayer.period = time + " " + selectedOption
-    console.log(selectedPlayer)
-    document.querySelector('.banpage').classList.add('hideban');
-    document.querySelector('.hammer').classList.add('hide-element');
-    document.querySelector('.bantab').classList.add('active-action');
+const confirmAction = (elem, elemimage) => {
+    if(elem === '.banpage'){
+        let reason = document.querySelector('#ban-reason').value
+        let time = document.querySelector('#time').value
+        selectedPlayer.banreason = reason
+        selectedPlayer.period = time + " " + selectedOption
+        console.log(selectedPlayer)
+    } else if(elem === '.setjobpage'){
+        console.log(selectedJob);
+    } else if(elem === '.givevehiclepage'){
+        console.log(selectVehicle)
+    }
+    document.querySelector(elem).classList.add('hideban');
+    document.querySelector(elemimage).classList.add('hide-element');
     document.querySelector('.page-header').style.filter = 'none';
     document.querySelector('.player-info').style.filter = 'none';
     document.querySelector('.action-buttons section').style.filter = 'blur(7.5px)';
@@ -309,12 +454,12 @@ document.querySelector('.godmode').addEventListener('click', () => {
 document.querySelector('.freeze').addEventListener('click', () => {
     console.log(selectedPlayer.playerId, "freeze player")
 })
-document.querySelector('.set-job').addEventListener('click', () => {
-    console.log(selectedPlayer.playerId, "set-job")
-})
-document.querySelector('.give-vehicle').addEventListener('click', () => {
-    console.log(selectedPlayer.playerId, "give vehicle")
-})
+// document.querySelector('.set-job').addEventListener('click', () => {
+//     console.log(selectedPlayer.playerId, "set-job")
+// })
+// document.querySelector('.give-vehicle').addEventListener('click', () => {
+//     console.log(selectedPlayer.playerId, "give vehicle")
+// })
 document.querySelector('.fix-vehicle').addEventListener('click', () => {
     console.log(selectedPlayer.playerId, "fix-vehicle")
 })
